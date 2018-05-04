@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Direcciones de Entrega</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div id="{{ mapId }}" [ngStyle]="{height: mapHeight + '%'}"></div>
+
+  <ion-item-group class="map-overlay list-full-border" [hidden]="isNew">
+    <ion-item-divider color="gray" class="bold">Mis direcciones guardadas</ion-item-divider>
+    <ion-item *ngFor="let place of places; let index = index" (click)="choosePlace(place)">
+      <ion-icon name="ios-star-outline" item-left></ion-icon>
+      <div>
+        <div class="bold">{{ place.name }}</div>
+        <span>{{ place.address }}</span>
+      </div>
+    </ion-item>
+    <ion-item (click)="choosePlaceInMap()">
+      <ion-icon name="ios-pin-outline" item-left></ion-icon>
+      <div>
+        <div class="bold">Fijar</div>
+        <span class="italic" style="font-size: 0.9em;">Seleccionar una dirección en el mapa.</span>
+      </div>
+    </ion-item>
+  </ion-item-group>
+  <div class="booking-info">
+    <ion-grid no-padding>
+      <ion-row class="vehicles" text-center>
+        <button class="current-position" ion-button icon-only (click)="fixCenter()" *ngIf="isNew">
+          <ion-icon name="md-locate"></ion-icon>
+        </button>
+        <button class="booton-fixed" ion-button color="primary" block (click)="selectPlace()" *ngIf="!moving && isNew">LISTO</button>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>

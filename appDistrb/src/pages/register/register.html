@@ -1,0 +1,71 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content class=" auth-bg">
+  <div class="auth-content">
+
+    <div class="light-bg">
+
+      <!-- Logo -->
+      <div padding text-center>
+        <img class="profile-picture" src="assets/img/logo.png" style="width: 190px; margin-top: -40px;">
+      </div>
+
+      <!-- Login form -->
+
+      <ion-list class="list-form light-bg" padding style="margin: -100px 0 16px">
+
+        <ion-item class="register">
+          <ion-label floating>Nombre</ion-label>
+          <ion-input type="text" class="inputRegister" [(ngModel)]="name" name="name" maxlength="30"></ion-input>
+        </ion-item>
+        <ion-item class="register">
+          <ion-label floating>Teléfono</ion-label>
+          <ion-input type="tel" class="inputRegister" [(ngModel)]="phone" name="phone" maxlength="12"></ion-input>
+        </ion-item>
+        <ion-item class="register">
+          <ion-label floating>Correo Electrónico</ion-label>
+          <ion-input type="email" class="inputRegister" [(ngModel)]="email" name="email" maxlength="30"></ion-input>
+        </ion-item>
+        <ion-item class="register">
+          <ion-label floating>Documento de Identidad</ion-label>
+          <ion-input type="text" class="inputRegister" [(ngModel)]="identificationDocument" name="identificationDocument" maxlength="30"></ion-input>
+        </ion-item>
+        <ion-item class="register">
+          <ion-label floating>Placa Vehículo</ion-label>
+          <ion-input type="text" class="inputRegister" [(ngModel)]="vehicleId" name="vehicleId" maxlength="10"></ion-input>
+        </ion-item>
+
+      </ion-list>
+
+      <div padding>
+        <button ion-button color="gas" block (click)="signup()">
+          Crear cuenta
+        </button>
+      </div>
+
+    </div>
+
+    <div padding=""></div>
+
+    <!-- Other links -->
+    <!--<ion-grid>-->
+    <!--<ion-row>-->
+    <!--<ion-col>-->
+    <!--<span ion-text color="light" >Forgot password?</span>-->
+    <!--</ion-col>-->
+    <!--<ion-col>-->
+    <!--<span ion-text color="light" >-->
+    <!--Have account?-->
+    <!--<span ion-text color="primary"  (click)="login()">Login</span>-->
+    <!--</span>-->
+    <!--</ion-col>-->
+    <!--</ion-row>-->
+    <!--</ion-grid>-->
+
+  </div>
+</ion-content>

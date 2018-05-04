@@ -1,0 +1,8 @@
+{
+  "name": "ionic2_taxi",
+  "app_id": "d0cc49ac",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

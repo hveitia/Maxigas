@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar color="primary" hideBackButton="true">
+    <ion-title [hidden]="!deliveryPending"><i class="fa fa-spinner fa-pulse" style="float: left;"></i> Buscando Distribuidor</ion-title>
+    <ion-title [hidden]="deliveryPending">Su pedido ha sido atendido.</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!-- Show map here -->
+  <div id="map" [ngStyle]="{height: mapHeight + 'px'}"></div>
+
+  <ion-list class="list-no-border" [hidden]="deliveryPending">
+    <ion-item class="tracking-info no-border" style="height: 70px;">
+      <img class="circle icon pull-left" src="assets/img/thumb/logo4.png" item-left alt=""/>
+      <div class="item-content" style="padding-top: 30px;">
+        <div>{{deliverName}}</div>
+        <div><ion-icon name="md-bus"><span style="margin-left: 5px; font-family:Roboto;">{{vehicleId}}</span></ion-icon><ion-icon name="star" style="margin-left: 30%; width: 20px;"></ion-icon> {{valoration}} </div>
+        <ion-icon name="ios-close-circle-outline" color="primary" class="iconCancel"></ion-icon>
+      </div>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

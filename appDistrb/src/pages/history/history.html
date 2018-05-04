@@ -1,0 +1,21 @@
+
+<ion-header>
+  <ion-navbar color="primary" >
+    <button  ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Entregas Pendientes</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="list-full-border">
+    <ion-item *ngFor="let item of deliverysList">
+      <div>
+        <div><strong>Fecha:</strong> {{ item.date.split('T')[0] + ' ' + item.date.split('T')[1].split('.')[0] }}</div>
+        <div><strong>Dirección:</strong> {{ item.address }}</div>
+      </div>
+      <ion-icon name="md-close-circle" item-right (click)="cancelDelivery(item)" color="rojo"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
