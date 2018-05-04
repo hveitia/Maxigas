@@ -1,6 +1,6 @@
 export const CONFIGS = {
 
-  enviroment: 'DEV', //PROD
+  enviroment: 'PROD', //PROD
   urlServices: 'http://localhost:3000/api/'
 
 };
