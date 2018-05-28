@@ -17,11 +17,26 @@ router.route('/attendDelivery/:id')
 router.route('/cancelDelivery/:id')
     .get(middleware.ensureAuthenticated, deliveryController.cancelDelivery);
 
+router.route('/onSiteDelivery/:id')
+    .get(middleware.ensureAuthenticated, deliveryController.onSiteDelivery);
+
+router.route('/successDelivery/:id')
+    .get(middleware.ensureAuthenticated, deliveryController.successDelivery);
+
 router.route('/pendingDeliveryByUser')
     .get(middleware.ensureAuthenticated, deliveryController.pendingDeliveryByUser);
 
 router.route('/attendedDeliveryByUserClient')
     .get(middleware.ensureAuthenticated, deliveryController.attendedDeliveryByUserClient);
+
+router.route('/onSiteDeliveryByUserClient')
+    .get(middleware.ensureAuthenticated, deliveryController.onSiteDeliveryByUserClient);
+
+router.route('/successDeliveryByUserClient')
+    .get(middleware.ensureAuthenticated, deliveryController.successDeliveryByUserClient);
+
+router.route('/attendedDeliveryByUserDistrib')
+    .get(middleware.ensureAuthenticated, deliveryController.attendedDeliveryByUserDistrib);
 
 router.route('/addValoration/:id')
     .options(middleware.ensureAuthenticated, deliveryController.options)

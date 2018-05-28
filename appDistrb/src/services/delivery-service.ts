@@ -7,6 +7,8 @@ import {UserService} from "./user-service";
 @Injectable()
 export class DeliveryService {
 
+  public deliveryAttended: any;
+
   constructor(private http: HttpClient, private userService: UserService) {
 
   }
@@ -37,6 +39,17 @@ export class DeliveryService {
     });
   }
 
+  attendedDeliveryByUserDistrib(): any {
+    return this.http.get(CONFIGS.urlServices + 'attendedDeliveryByUserDistrib', {
+      headers: new HttpHeaders(
+        {
+          'Content-Type': 'application/json',
+          'Authorization': this.userService.accessToken
+        }
+      )
+    });
+  }
+
   addDelivery(delivery: any): any {
     return this.http.post(CONFIGS.urlServices + 'delivery', delivery, {
       headers: new HttpHeaders(
@@ -50,6 +63,17 @@ export class DeliveryService {
 
   attendDelivery(deliveryId: any): any {
     return this.http.get(CONFIGS.urlServices + 'attendDelivery/'+ deliveryId, {
+      headers: new HttpHeaders(
+        {
+          'Content-Type': 'application/json',
+          'Authorization': this.userService.accessToken
+        }
+      )
+    });
+  }
+
+  successDelivery(deliveryId: any): any {
+    return this.http.get(CONFIGS.urlServices + 'successDelivery/'+ deliveryId, {
       headers: new HttpHeaders(
         {
           'Content-Type': 'application/json',

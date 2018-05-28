@@ -104,6 +104,51 @@ exports.attendedDeliveryByUserClient = function (req, res) {
         });
 };
 
+exports.onSiteDeliveryByUserClient = function (req, res) {
+
+    DELIVERYMODEL.find({$and: [{userRequest: req.user}, {state: 'ONSITE'}]})
+        .populate('userResponse')
+        .exec(function (err, result) {
+
+            if (err) {
+                res.send(500, err.message);
+            }
+
+            res.status(200).jsonp(result);
+
+        });
+};
+
+exports.successDeliveryByUserClient = function (req, res) {
+
+    DELIVERYMODEL.find({$and: [{userRequest: req.user}, {state: 'SUCCESS'}]})
+        .populate('userResponse')
+        .exec(function (err, result) {
+
+            if (err) {
+                res.send(500, err.message);
+            }
+
+            res.status(200).jsonp(result);
+
+        });
+};
+
+exports.attendedDeliveryByUserDistrib = function (req, res) {
+
+    DELIVERYMODEL.find({$and: [{userResponse: req.user}, {state: 'ATTENDED'}]})
+        .populate('userRequest')
+        .exec(function (err, result) {
+
+            if (err) {
+                res.send(500, err.message);
+            }
+
+            res.status(200).jsonp(result);
+
+        });
+};
+
 exports.addDelivery = function (req, res) {
 
     var obj = new DELIVERYMODEL({
@@ -178,6 +223,36 @@ exports.deleteDelivery = function (req, res) {
 
             res.status(200).jsonp('OK');
         })
+    });
+
+};
+
+exports.successDelivery = function (req, res) {
+
+    DELIVERYMODEL.findById(req.params.id, function (err, delivery) {
+
+        delivery.state = 'SUCCESS';
+
+        delivery.save(function (err, result) {
+            if (err) return res.send(500, err.message);
+            res.status(200).jsonp(result);
+        });
+
+    });
+
+};
+
+exports.onSiteDelivery = function (req, res) {
+
+    DELIVERYMODEL.findById(req.params.id, function (err, delivery) {
+
+        delivery.state = 'ONSITE';
+
+        delivery.save(function (err, result) {
+            if (err) return res.send(500, err.message);
+            res.status(200).jsonp(result);
+        });
+
     });
 
 };

@@ -77,6 +77,26 @@ export class HomePage implements OnDestroy {
   ionViewDidLoad() {
 
     this.initializeMap();
+
+  }
+
+  ionViewWillEnter() {
+
+    const ref = this;
+    this.deliveryService.attendedDeliveryByUserClient().subscribe(data => {
+
+      if(data.length > 0){
+
+        ref.deliveryService.deliverSaved = data[0];
+        ref.deliveryService.deliveryAttended = true;
+
+        ref.nav.push(TrackingPage);
+      }
+
+    }, error => {
+
+    });
+
   }
 
   ionViewDidEnter() {
@@ -148,7 +168,7 @@ export class HomePage implements OnDestroy {
     }, 300);
 
 
-    if (CONFIGS.enviroment == 'PROD') {
+    if (CONFIGS.enviroment == 'PROD' || CONFIGS.enviroment == 'DEV') {
       this.geolocation.getCurrentPosition().then((resp) => {
 
         let newLatLng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
@@ -201,7 +221,7 @@ export class HomePage implements OnDestroy {
       this.shoowConfirmationsMsj('Su pedido se ha registrado correctamente.');
       //this.setDefaultValues();
 
-      ref.deliveryService.deliverSaved = delivery;
+      ref.deliveryService.deliverSaved = data;
 
       ref.nav.push(TrackingPage);
 
@@ -216,7 +236,7 @@ export class HomePage implements OnDestroy {
   shoowConfirmationsMsj(msj: string) {
     let toast = this.toastCtrl.create({
       message: msj,
-      duration: 5000,
+      duration: 10000,
       position: 'middle',
       showCloseButton: true,
       closeButtonText: 'Ok',
@@ -326,4 +346,5 @@ export class HomePage implements OnDestroy {
       }
     }
   }
+
 }

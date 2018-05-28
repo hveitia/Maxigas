@@ -8,6 +8,7 @@ import {UserService} from "./user-service";
 export class DeliveryService {
 
   public deliverSaved: any;
+  public deliveryAttended = false;
 
   constructor(private http: HttpClient, private userService: UserService) {
 
@@ -50,8 +51,19 @@ export class DeliveryService {
     });
   }
 
-  loadAttendedDeliverys(): any {
-    return this.http.get(CONFIGS.urlServices + 'deliveryByState/ATTENDED', {
+  onSiteDeliveryByUserClient(): any {
+    return this.http.get(CONFIGS.urlServices + 'onSiteDeliveryByUserClient', {
+      headers: new HttpHeaders(
+        {
+          'Content-Type': 'application/json',
+          'Authorization': this.userService.accessToken
+        }
+      )
+    });
+  }
+
+  successDeliveryByUserClient(): any {
+    return this.http.get(CONFIGS.urlServices + 'successDeliveryByUserClient', {
       headers: new HttpHeaders(
         {
           'Content-Type': 'application/json',
@@ -62,7 +74,7 @@ export class DeliveryService {
   }
 
   cancelDelivery(deliveryId: any): any {
-    return this.http.get(CONFIGS.urlServices + 'cancelDelivery/'+ deliveryId, {
+    return this.http.get(CONFIGS.urlServices + 'cancelDelivery/' + deliveryId, {
       headers: new HttpHeaders(
         {
           'Content-Type': 'application/json',
@@ -72,6 +84,16 @@ export class DeliveryService {
     });
   }
 
+  addValoration(deliveryId: any, valoration: Number): any {
+    return this.http.put(CONFIGS.urlServices + 'addValoration/' + deliveryId, {valoration: valoration}, {
+      headers: new HttpHeaders(
+        {
+          'Content-Type': 'application/json',
+          'Authorization': this.userService.accessToken
+        }
+      )
+    });
+  }
 
 
 }

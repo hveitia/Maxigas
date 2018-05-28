@@ -80,7 +80,7 @@ export class MyApp {
   login() {
 
     const uuid = {
-      uuid: CONFIGS.enviroment == 'PROD' ? this.userService.uuid : '5b72-1e7a-e359-058060854812'
+      uuid: CONFIGS.enviroment == 'PROD' ? this.userService.uuid : CONFIGS.uuidDevelop
     };
 
     this.userService.login(uuid).subscribe(data => {

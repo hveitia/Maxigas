@@ -72,15 +72,15 @@
       <ion-row class="vehicles" text-center>
 
         <ion-col class="item-vehicle active" (click)="toggleVehicle('gas')" style="background: #fe4c19">
-          <button  ion-button clear icon-left color="gas" class="button-circle-in button-next" [hidden]="showForm">
-            <ion-icon name="md-flame"></ion-icon> Gas
+          <button  ion-button clear icon-left color="gas" class="button-circle-in button-next" [hidden]="showForm" style="text-transform: none !important;">
+            <ion-icon name="md-flame"></ion-icon> Solicitar Gas
           </button>
         </ion-col>
-        <ion-col class="item-vehicle active" (click)="toggleVehicle('agua')" style="background: #244c59">
-          <button  ion-button clear icon-left color="agua"  class="button-circle-in button-next" [hidden]="showForm">
-            <ion-icon name="ios-water"></ion-icon> Agua
-          </button>
-        </ion-col>
+        <!--<ion-col class="item-vehicle active" (click)="toggleVehicle('agua')" style="background: #244c59">-->
+          <!--<button  ion-button clear icon-left color="agua"  class="button-circle-in button-next" [hidden]="showForm">-->
+            <!--<ion-icon name="ios-water"></ion-icon> Agua-->
+          <!--</button>-->
+        <!--</ion-col>-->
 
       </ion-row>
     </ion-grid>

@@ -14,11 +14,14 @@ export class PlacesPage {
   // all places
   public places: Array<any>;
   public mapId = Math.random() + 'map';
+  public searchBoxId = this.mapId + 'searchBox';
   public mapHeight: number = 100;
   public map: any;
   public marker: any;
   public moving: boolean = false;
   public isNew: boolean = false;
+  public input: any;
+  public searchBox: any;
 
   constructor(public nav: NavController, public placeService: PlaceService, public userService: UserService) {
 
@@ -82,6 +85,9 @@ export class PlacesPage {
 
     this.map = new google.maps.Map(document.getElementById(this.mapId), mapOptions);
 
+    //this.input = document.getElementById(this.searchBoxId);
+    //this.searchBox = new google.maps.places.SearchBox(this.input);
+
     var viewHeight = window.screen.height - 44;//44
     var infoHeight = document.getElementsByClassName('booking-info')[0].scrollHeight;
     var bookingHeight = document.getElementsByClassName('booking-form')[0].scrollHeight;
@@ -118,6 +124,7 @@ export class PlacesPage {
 
       console.log(e.latLng);
     });
+
   }
 
   deleteMarkers() {

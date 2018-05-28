@@ -4,6 +4,7 @@ import {HomePage} from "../home/home";
 import {UserService} from "../../services/user-service";
 import {UniqueDeviceID} from '@ionic-native/unique-device-id';
 import {SplashScreen} from "@ionic-native/splash-screen";
+import {CONFIGS} from "../../configs/configs";
 
 @Component({
   selector: 'page-register',
@@ -16,29 +17,33 @@ export class RegisterPage {
 
   constructor(public nav: NavController, public userService: UserService,
               private uniqueDeviceID: UniqueDeviceID, public splashScreen: SplashScreen,
-              public alertCtrl: AlertController ) {
+              public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
 
-    this.uniqueDeviceID.get()
-      .then((uuid: any) => {
-        this.userService.uuid = uuid;
-      })
-      .catch((error: any) => console.log(error));
+    if (CONFIGS.enviroment == 'PROD') {
+      this.uniqueDeviceID.get()
+        .then((uuid: any) => {
+          this.userService.uuid = uuid;
+        })
+        .catch((error: any) => console.log(error));
+    } else {
+      this.userService.uuid = CONFIGS.uuidDevelop;
+    }
 
   }
 
   signup() {
 
-    if(this.name =='' || this.phone == ''){
+    if (this.name == '' || this.phone == '') {
       let alert = this.alertCtrl.create({
         title: 'Estimado Usuario',
         subTitle: 'Por favor verifique que no hay campos vacíos.',
         buttons: ['OK']
       });
       alert.present();
-    }else {
+    } else {
       const userToSave = {
         name: this.name,
         pass: this.userService.uuid,
@@ -71,7 +76,7 @@ export class RegisterPage {
   login() {
 
     const uuid = {
-      uuid: this.userService.uuid
+      uuid: CONFIGS.enviroment == 'PROD' ? this.userService.uuid : CONFIGS.uuidDevelop
     };
 
     this.userService.login(uuid).subscribe(data => {

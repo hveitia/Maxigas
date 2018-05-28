@@ -49,7 +49,7 @@ export class HistoryPage {
 
   cancelDelivery(delivery){
 
-    this.deliveryService.cancelDelivery(delivery._id).subscribe(data =>{
+    this.deliveryService.cancelDelivery(delivery._id).subscribe(data => {
 
      this.loadPendingDeliverys();
 

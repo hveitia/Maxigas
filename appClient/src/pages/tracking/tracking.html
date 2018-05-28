@@ -11,12 +11,44 @@
 
   <ion-list class="list-no-border" [hidden]="deliveryPending">
     <ion-item class="tracking-info no-border" style="height: 70px;">
+
       <img class="circle icon pull-left" src="assets/img/thumb/logo4.png" item-left alt=""/>
       <div class="item-content" style="padding-top: 30px;">
         <div>{{deliverName}}</div>
-        <div><ion-icon name="md-bus"><span style="margin-left: 5px; font-family:Roboto;">{{vehicleId}}</span></ion-icon><ion-icon name="star" style="margin-left: 30%; width: 20px;"></ion-icon> {{valoration}} </div>
-        <ion-icon name="ios-close-circle-outline" color="primary" class="iconCancel"></ion-icon>
+        <div>
+          <ion-icon name="md-bus">
+            <span style="margin-left: 5px; font-family:Roboto;">{{vehicleId}}</span>
+          </ion-icon>
+          <ion-icon name="star" style="margin-left: 30%; width: 20px;"></ion-icon> {{valoration}}
+        </div>
+        <!--<ion-icon name="ios-home" color="primary" class="iconCancel" (click)="goHome()"></ion-icon>-->
       </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-list class="list-no-border" [hidden]="!deliveryPending">
+
+    <ion-item class="tracking-info no-border" style="height: 70px;">
+
+      <button  ion-button color="primary"  block (click)="goHome()">HOME</button>
+      <button  ion-button color="danger"  block (click)="cancelDelivery()">CANCELAR PEDIDO</button>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list class="list-no-border valorationContainer" [hidden]="mode != 'SUCCESS'">
+    <ion-item>
+      <span>Pedido entregado. ¿Valorar al distribuidor?</span>
+    </ion-item>
+    <ion-item style="height: 80px;">
+      <ion-range min="1" max="100" [(ngModel)]="valorationDelivery" color="primary">
+        <ion-label range-left style="text-align: center;" color="secondary"><ion-icon name="sad"></ion-icon></ion-label>
+        <ion-label range-right style="text-align: center;" color="primary"><ion-icon name="happy"></ion-icon></ion-label>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+      <button ion-button color="gas" style="float: left" (click)="goHome()">SALTAR</button>
+      <button ion-button color="primary" style="float: right" (click)="valorateDelivery()">VALORAR</button>
     </ion-item>
   </ion-list>
 

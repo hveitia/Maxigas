@@ -5,8 +5,8 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar color="primary" >
-    <button  ion-button menuToggle>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>MaxiGas</ion-title>
@@ -24,10 +24,18 @@
 
   <ion-footer>
     <ion-toolbar>
-      <ion-item>
+      <ion-item style="float: left; text-align: center" [hidden]="mode != 'ATTENDING'">
+        <button ion-button color="primary" style="float: left" (click)="successDelivery()">ENTREGA EXITOSA</button>
+        <button ion-button color="primary">LLEGUÉ</button>
+        <button ion-button color="danger" style="float: right" (click)="cancelarCLick()">CANCELAR</button>
+      </ion-item>
+      <ion-item [hidden]="showCancelControl || mode == 'ATTENDING'">
         <ion-label [hidden]="isOnline">OFF-LINE</ion-label>
         <ion-label [hidden]="!isOnline">ON-LINE</ion-label>
         <ion-toggle [(ngModel)]="isOnline" (ionChange)="changeStatus()"></ion-toggle>
+      </ion-item>
+      <ion-item [hidden]="!showCancelControl">
+        <ion-range [(ngModel)]="cancelValue" color="danger" pin="false" (ionChange)="canceling()"></ion-range>
       </ion-item>
     </ion-toolbar>
   </ion-footer>
